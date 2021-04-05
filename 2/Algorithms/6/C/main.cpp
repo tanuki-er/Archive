@@ -19,7 +19,7 @@ private:
 
 public:
 	void insert(int x)
-    {
+    { 
         if (exists(x))
         {
             return;
