@@ -8,7 +8,7 @@ struct array
 	int K, L, R;
 };
 
-void passage(vector<array> &tree, vector<int> &key, int base)
+void passage(vector<array> &tree, vector<int> &key, int base) 
 {
 	if (base != -1)
 	{
