@@ -1,44 +1,73 @@
 #include <fstream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
+
 struct array
 {
 	int K, L, R;
 };
-int searching(vector<array> &tree, int base)
+
+void passage(vector<array> &tree, vector<int> &key, int base)
 {
-	if (base == -1)
+	if (base != -1)
+	{
+		passage(tree, key, tree[base].L);
+
+		key.push_back(tree[base].K);
+
+		passage(tree, key, tree[base].R);
+	}
+}
+
+bool ordered(vector<int> &key)
+{
+	for(int i = 1; i < key.size(); i++)
     {
-        return 0;
+        if (key[i - 1] >= key[i])
+        {
+            return false;
+        }
     }
-	else
-    {
-        return max(searching(tree, tree[base].L), searching(tree, tree[base].R)) + 1;
-    }
+
+	return true;
+}
+
+bool correct(vector<array> &tree, int base)
+{
+	vector<int> key;
+
+	passage(tree, key, 0);
+
+	return ordered(key);
 }
 
 int main()
 {
-	ifstream input("heightin.txt");
-	ofstream output("heightout.txt");
-    int N;
-	input >> N;
-	vector<array> tree(N);
-	for(int i = 0; i < N; i++)
+	ifstream fin("check.in");
+	ofstream fout("check.out");
+    int n;
+
+	fin >> n;
+
+	vector<array> tree(n);
+
+	for(int i = 0; i < n; i++)
 	{
-		input >> tree[i].K >> tree[i].L >> tree[i].R;
+		fin >> tree[i].K >> tree[i].L >> tree[i].R;
+
 		tree[i].L--;
 		tree[i].R--;
 	}
-	if (N == 0)
+
+	if ((n == 0) ||  (correct(tree, 0)))
     {
-        output << 0;
+        fout << "YES";
     }
 	else
     {
-        output << searching(tree, 0);
+        fout << "NO";
     }
+
 	return 0;
 }
