@@ -7,7 +7,7 @@ using namespace std;
 const bool DEBUG = false;
 
 struct Node
-{
+{ 
 	int Value;
 	Node *Next;
 };
