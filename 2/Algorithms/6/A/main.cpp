@@ -21,8 +21,8 @@ int searching(vector<array> &tree, int base)
 
 int main()
 {
-	ifstream input("heightin.txt");
-	ofstream output("heightout.txt");
+	ifstream input("height.in");
+	ofstream output("height.out");
     int N;
 	input >> N;
 	vector<array> tree(N);
@@ -37,7 +37,7 @@ int main()
         output << 0;
     }
 	else
-    {
+    { 
         output << searching(tree, 0);
     }
 	return 0;
