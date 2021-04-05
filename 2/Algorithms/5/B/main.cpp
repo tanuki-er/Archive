@@ -9,7 +9,7 @@ const bool DEBUG = false;
 
 struct Node
 {
-	string Key, Value;
+	string Key, Value; 
 	Node *Next;
 };
 
